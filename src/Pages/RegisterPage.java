@@ -1,5 +1,7 @@
 package Pages;
 
+import javax.mail.Message;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,6 +26,75 @@ public class RegisterPage {
 	By Text_ConfirmPass_Loca = By.xpath("//*[@name='confirmpassword']");
 	By Btn_Signup_Loca = By.xpath("//button[@class='signupbtn btn_full btn btn-success btn-block btn-lg']");
 
+	public void verifyElemntsOnPageTest(WebDriver driver)
+	{
+		try {
+				driver.findElement(Text_FirstName_Loca).isDisplayed();
+				System.out.println("FirstName textbox is displayed");
+		}
+		catch(Exception e)
+		{
+			System.out.println("FirstName textbox is not displayed");
+
+		}
+		try {
+				driver.findElement(Text_LastName_Loca).isDisplayed();
+				System.out.println("LastName textbox is  displayed");
+
+		}		catch(Exception e)
+		{
+			System.out.println("LastName textbox is not displayed");
+
+		}
+		try {
+				driver.findElement(Text_MobileNum_Loca).isDisplayed();
+				System.out.println("Mobile textbox is  displayed");
+
+		}		catch(Exception e)
+		{
+			System.out.println("Mobile textbox is not displayed");
+
+		}
+		try {
+				driver.findElement(Text_Email_Loca).isDisplayed();
+				System.out.println("Email textbox is  displayed");
+}
+		catch(Exception e)
+		{
+			System.out.println("Email textbox is not displayed");
+
+		}
+		try {
+				driver.findElement(Text_Pass_Loca).isDisplayed();
+				System.out.println("Password textbox is  displayed");
+}
+		catch(Exception e)
+		{
+			System.out.println("Password textbox is not displayed");
+
+		}
+		try {
+				driver.findElement(Text_ConfirmPass_Loca).isDisplayed();
+				System.out.println("Confirm Password textbox is  displayed");
+}
+		catch(Exception e)
+		{
+			System.out.println("Confirm Password textbox is not displayed");
+
+		}
+		try {
+				driver.findElement(Btn_Signup_Loca).isDisplayed();
+				System.out.println("Signup button is displayed");
+}
+		catch(Exception e)
+		{
+			System.out.println("Signup button is not displayed");
+
+		}
+
+
+	}
+	
 	public void SetFirstName(WebDriver driver, String FirstName)
 	{
 		//Enter Fist Name

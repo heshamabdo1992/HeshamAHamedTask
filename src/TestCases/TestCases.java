@@ -35,33 +35,62 @@ public class TestCases {
 	String CSVFileName= "TestCaseData.xlsx";
 	String CSVPath= "./ReadFrom/TestCaseData.csv";
 
-//	String ExcelSheetName= "Original";
-//	int ExcelSheetindex= 2;
+	private String TestCaseName;
 @DataProvider(name = "UserData")
-public Object[][] UserData() throws IOException {
-
+public Object[] UserData() throws IOException {
+	TestCaseName = this.toString();
 	ReadCsv csvfile1= new ReadCsv();
-	return csvfile1.dataProvider_ByCSVReader2(CSVPath);
-//		String[][] testdata = {{ "FirstName", "LastName", "Mobile", "Email", "Password", "Password" }};
+	//return csvfile1.dataProvider_ByCSVReader2(CSVPath);
+	return csvfile1.dataProviderfortestcase_ByCSVReader2(CSVPath,TestCaseName);
 
-//		return testdata;
 }
-	
-	@Test (dataProvider = "UserData", enabled=true)
-	public void TestCases1(String TestCaseID,String FirstName, String LastName,
+
+//Verifying elements on Registration page
+     @Test (priority=1)
+     public void TestCase1()   {
+	               System.out.println(":@TestCases1");
+	               RegisterPage TC1 = new RegisterPage(driver);
+	               TC1.verifyElemntsOnPageTest(driver);
+	               }
+
+
+//Registration with all valid data
+	@Test (priority=2,dataProvider = "UserData", enabled=true)
+	public void TestCase2(String TestCaseID,String FirstName, String LastName,
 			String Mobile, String Email,
 			String Password, String ConfirmPassword) throws InterruptedException {
 		System.out.println( TestCaseID+ FirstName+LastName
 				+ Mobile+ Email+Password+ ConfirmPassword);
 
-		System.out.println(":@Test");
-//		Assert.assertTrue(false);
-//		logger.log(LogStatus.PASS, "Test Case Passed is passTest");
-
-//		RegisterPage TC1 = new RegisterPage(driver);
-//		TC1.signup(driver, FirstName, LastName, Mobile, Email, Password, ConfirmPassword);
-//		TC1.assert_signup_success(FirstName);
+		System.out.println(":@TestCase2");
+		RegisterPage TC2 = new RegisterPage(driver);
+		TC2.signup(driver, FirstName, LastName, Mobile, Email, Password, ConfirmPassword);
+		TC2.assert_signup_success(FirstName);
 	}
+	
+	//Registration with all valid data
+		@Test (priority=2,dataProvider = "UserData", enabled=true)
+		public void TestCase3(String TestCaseID,String FirstName, String LastName,
+				String Mobile, String Email,
+				String Password, String ConfirmPassword) throws InterruptedException {
+			System.out.println( TestCaseID+ FirstName+LastName
+					+ Mobile+ Email+Password+ ConfirmPassword);
+
+			System.out.println(":@TestCase2");
+			RegisterPage TC2 = new RegisterPage(driver);
+			TC2.signup(driver, FirstName, LastName, Mobile, Email, Password, ConfirmPassword);
+			TC2.assert_signup_success(FirstName);
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	private String sTestCaseName;
 
