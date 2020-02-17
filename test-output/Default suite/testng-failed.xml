@@ -5,10 +5,10 @@
     <classes>
       <class name="TestCases.TestCases">
         <methods>
-          <include name="endReport"/>
           <include name="Setup"/>
           <include name="TearDown"/>
-          <include name="TestCases1"/>
+          <include name="TestCase3"/>
+          <include name="TestCase2"/>
         </methods>
       </class> <!-- TestCases.TestCases -->
     </classes>

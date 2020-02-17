@@ -1,2 +1,9 @@
 TestCase ID,FirstName,LastName,Mobile,Email,Password,Confirm Password
-1,TesterF,TesterL,123456789,tester@gmail.com,Password,Password
+TestCase2,TesterF2,TesterL,123456789,tester2@gmail.com,Password,Password
+TestCase3, ,TesterL3,123456789,tester3@gmail.com,Password,Password
+TestCase4,TesterF4, ,123456789,tester4@gmail.com,Password,Password
+TestCase5,TesterF5,TesterL5, ,tester5@gmail.com,Password,Password
+TestCase6,TesterF6,TesterL6,123456789, ,Password,Password
+TestCase7,TesterF7,TesterL7,123456789,tester7@gmail.com,,Password
+TestCase8,TesterF8,TesterL8,123456789,tester8@gmail.com,Password, 
+TestCase9,TesterF,TesterL,123456789,tester9@gmail.com,Password,Password
