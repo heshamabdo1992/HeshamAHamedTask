@@ -26,6 +26,7 @@ public class RegisterPage {
 	By Text_ConfirmPass_Loca = By.xpath("//*[@name='confirmpassword']");
 	By Btn_Signup_Loca = By.xpath("//button[@class='signupbtn btn_full btn btn-success btn-block btn-lg']");
 
+	// Verify Elements on the page
 	public void verifyElemntsOnPageTest(WebDriver driver)
 	{
 		try {
@@ -94,6 +95,7 @@ public class RegisterPage {
 
 
 	}
+	
 	
 	public void SetFirstName(WebDriver driver, String FirstName)
 	{
@@ -167,12 +169,97 @@ public class RegisterPage {
 		Thread.sleep(3000);
 	}
 	
+	// Assert tooltips appear when user enter empty 
+	public void asserttooltipnotappear(WebDriver driver) {
+		
+		String toolTipText="";
+        try {
+    		Utils.Wait.visibiability(driver,By.xpath("//*[@value='Please fill out this field.']"));
+
+    		toolTipText = driver.findElement(By.xpath("//*[.='Please fill out this field.']")).getAttribute("title");
+
+        	Assert.assertFalse(toolTipText.contains("Please fill out this field"));
+      //  	System.out.println(toolTipText+"\n toolTip not appear");
+
+        }catch (Exception e) {
+        	System.out.println(toolTipText+"\ntoolTip appear");
+        }	
+	}
+	
+	
+	By Alertmessage= By.xpath("//*[@class='alert alert-danger']");
+	// Assert email error message when user enter invalid email 
+	public void assert_email_error_notappear(WebDriver driver) {
+		String Msg="";
+        try {
+    		Utils.Wait.visibiability(driver, Alertmessage);
+    		 Msg=driver.findElement(Alertmessage).getText();
+        	Assert.assertFalse(Msg.contains("The Email field must contain a valid email address"));
+        //	System.out.println(Msg+"\nThe Email field  contain a valid email address");
+
+        }catch (Exception e) {
+        	System.out.println(Msg+"\nThe Email field doesn't contain a valid email address");
+        }	
+        }
+	
+	
+	
+	// Assert email error message when user enter invalid email 
+	public void assert_emailExists_error_notappear(WebDriver driver) {
+		String Msg="";
+        try {
+    		Utils.Wait.visibiability(driver, Alertmessage);
+
+    		 Msg=driver.findElement(Alertmessage).getText();
+        	Assert.assertFalse(Msg.contains("Email Already Exists"));
+        //	System.out.println(Msg+"\nEmail is not Exists");
+
+        }catch (Exception e) {
+        	System.out.println(Msg+"\nEmail Already Exists");
+        }	
+        }
+
+	
+	// Assert password policy  message when user enter passward not match the policy  
+	public void assert_pwd_policy_msg_notappear(WebDriver driver) {
+		String Msg="";
+        try {
+    		Utils.Wait.visibiability(driver, Alertmessage);
+
+    		 Msg=driver.findElement(Alertmessage).getText();
+
+        	Assert.assertFalse(Msg.contains("The Password field must be at least 6 characters in length"));
+       // 	System.out.println(Msg+"\nThe Passward  match the policy");
+
+        }catch (Exception e) {
+        	System.out.println(Msg+"\nThe Passward not match the policy");
+        }
+	}
+	
+	// Assert password policy  message when user enter confirm passward not match the  password  
+	public void assertpwdmatch(WebDriver driver) {
+		String Msg="";
+
+        try {
+    		Utils.Wait.visibiability(driver, Alertmessage);
+
+    		 Msg=driver.findElement(Alertmessage).getText();
+        	Assert.assertFalse(Msg.contains("Password not matching with confirm password"));
+      //  	System.out.println(Msg+"\nPassword  matching with confirm password");
+
+        }catch (Exception e) {
+        	System.out.println(Msg+"\nPassword not matching with confirm password");
+        }
+	}
+	
 	
 	By text_Username_loca=By.xpath("//div[2]/div[1]/div[1]/div/div/div[1]/div/div[2]/h3");
 	public void assert_signup_success(String username)
 	{
+		Utils.Wait.visibiability(driver, text_Username_loca);
+
 		// assert after sign up success , check that user name is displayed
-		Assert.assertTrue(driver.findElement(Btn_Signup_Loca).getText().contains(username));
+		Assert.assertTrue(driver.findElement(text_Username_loca).getText().contains(username));
 	}
 	 
 	

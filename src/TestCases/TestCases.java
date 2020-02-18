@@ -35,18 +35,16 @@ public class TestCases {
 	String CSVFileName= "TestCaseData.xlsx";
 	String CSVPath= "./ReadFrom/TestCaseData.csv";
 
-	private String TestCaseName;
 @DataProvider(name = "UserData")
 public Object[] UserData() throws IOException {
-	TestCaseName = this.toString();
+
 	ReadCsv csvfile1= new ReadCsv();
-	//return csvfile1.dataProvider_ByCSVReader2(CSVPath);
-	return csvfile1.dataProviderfortestcase_ByCSVReader2(CSVPath,TestCaseName);
+	return csvfile1.dataProvider_ByCSVReader2(CSVPath);
 
 }
 
 //Verifying elements on Registration page
-     @Test (priority=1)
+  //   @Test (priority=1)
      public void TestCase1()   {
 	               System.out.println(":@TestCases1");
 	               RegisterPage TC1 = new RegisterPage(driver);
@@ -54,52 +52,36 @@ public Object[] UserData() throws IOException {
 	               }
 
 
-//Registration with all valid data
+//Registration with all valid data and invalid data
 	@Test (priority=2,dataProvider = "UserData", enabled=true)
 	public void TestCase2(String TestCaseID,String FirstName, String LastName,
 			String Mobile, String Email,
 			String Password, String ConfirmPassword) throws InterruptedException {
-		System.out.println( TestCaseID+ FirstName+LastName
-				+ Mobile+ Email+Password+ ConfirmPassword);
+	//	System.out.println( TestCaseID+ FirstName+LastName
+		//		+ Mobile+ Email+Password+ ConfirmPassword);
 
 		System.out.println(":@TestCase2");
 		RegisterPage TC2 = new RegisterPage(driver);
 		TC2.signup(driver, FirstName, LastName, Mobile, Email, Password, ConfirmPassword);
+		//TC2.asserttooltipnotappear(driver);
+		TC2.assert_email_error_notappear(driver);
+		TC2.assert_emailExists_error_notappear(driver);
+		TC2.assert_pwd_policy_msg_notappear(driver);
+		TC2.assertpwdmatch(driver);
+		
 		TC2.assert_signup_success(FirstName);
+		
 	}
 	
-	//Registration with all valid data
-		@Test (priority=2,dataProvider = "UserData", enabled=true)
-		public void TestCase3(String TestCaseID,String FirstName, String LastName,
-				String Mobile, String Email,
-				String Password, String ConfirmPassword) throws InterruptedException {
-			System.out.println( TestCaseID+ FirstName+LastName
-					+ Mobile+ Email+Password+ ConfirmPassword);
 
-			System.out.println(":@TestCase2");
-			RegisterPage TC2 = new RegisterPage(driver);
-			TC2.signup(driver, FirstName, LastName, Mobile, Email, Password, ConfirmPassword);
-			TC2.assert_signup_success(FirstName);
-		}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-
-	private String sTestCaseName;
 
 	@BeforeMethod(alwaysRun = true)
 	public void Setup() throws Exception {
 		System.out.println(":@BeforeMethod");
-	  	DOMConfigurator.configure("./ReadFrom/log4j.xml");
-	  	sTestCaseName = this.toString();
-	  	sTestCaseName = Utils.Utility.getTestCaseName(this.toString());
+	  //	DOMConfigurator.configure("./ReadFrom/log4j.xml");
 	  	
 		// Start printing the logs and printing the Test Case name
 //		extent = new ExtentReports (System.getProperty("user.dir") +"/test-output/STMExtentReport.html", true);
@@ -108,7 +90,7 @@ public Object[] UserData() throws IOException {
 //        extent.loadConfig(new File("./ReadFrom/extent-config.xml"));
 //		logger = extent.startTest("start test");
 
-	  	Utils.Log.startTestCase(sTestCaseName);
+//	  	Utils.Log.startTestCase(sTestCaseName);
 		
 		Utils.ReadingPropertiesFile data = new Utils.ReadingPropertiesFile("./ReadFrom/config.properties");
 
@@ -140,17 +122,6 @@ public Object[] UserData() throws IOException {
 
 	}
 	
-	/*@AfterTest
-	public void endReport(){
-		// writing everything to document
-		//flush() - to write or update test information to your report. 
-                extent.flush();
-                //Call close() at the very end of your session to clear all resources. 
-                //If any of your test ended abruptly causing any side-affects (not all logs sent to ExtentReports, information missing), this method will ensure that the test is still appended to the report with a warning message.
-                //You should call close() only once, at the very end (in @AfterSuite for example) as it closes the underlying stream. 
-                //Once this method is called, calling any Extent method will throw an error.
-                //close() - To close all the operation
-                extent.close();
-    }*/
+
 	
 }

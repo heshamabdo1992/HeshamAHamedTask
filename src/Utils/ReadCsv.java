@@ -65,6 +65,58 @@ public class ReadCsv {
 		return array;
 	}
 
+ public static String getTestCaseName(String sTestCase)throws Exception{
+ 
+ String value = sTestCase;
+ 
+ try{
+ 
+ int posi = value.indexOf("@");
+ 
+ value = value.substring(0, posi);
+ 
+ posi = value.lastIndexOf("."); 
+ 
+ value = value.substring(posi + 1);
+ 
+ return value;
+ 
+ }catch (Exception e){
+ 
+ throw (e);
+ 
+ }
+ 
+ }
+
+	@SuppressWarnings("resource")
+	public Object[] dataProviderfortestcase_ByCSVReader2(String FilePath,String strSearch) throws IOException {
+
+		// 1&2- Create CSV file reader that use file path.
+		CSVReader reader = new CSVReader(new FileReader(FilePath));
+
+		// 3- Create list of Array String.
+		// 4- Read file values via CSV reader and store it in list of Array String.
+		List<String[]> list = reader.readAll();
+
+		// 5.1- Create 2D array String with length = list of array length.
+		String[] array = null;
+
+		// 5.2- for loop to pass list(array value) to (2D array)of Strings (String [][]) that it can match the DataProvider return type.
+		for (int row  = 0; row  < list.size(); row++) {
+        for (int column = 0; column< list.get(row).length; column++ ){
+            if(list.get(row)[column].trim().equalsIgnoreCase(strSearch)){
+                System.out.println("found - your item is on row " +row + ", column "+ column);
+                array=list.get(row);
+            }              
+        }
+			//array[i] = list.get(i+1);
+		}
+
+		return array;
+	}
+
+
 	public Object[][] dataProvider_ByScanner(String FilePath) throws IOException {
 
 		// 1&2- Create an object Scanner file reader that use file path.

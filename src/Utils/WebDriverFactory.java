@@ -76,7 +76,7 @@ public class WebDriverFactory {
 	}
 
 	
-	public static WebDriver Driver_Path(@Optional("chrome") String browserName,@Optional("./WebDriver/chromedriver.exe") 
+	public static WebDriver Driver_Path(@Optional("chrome") String browserName,@Optional("./WebDriver/") 
 	String WebDriver_FolderDirectory) {
 		System.out.println("@Start Factory Driver using specific path");
 		System.out.println("Use chromedriver in project directory using 'System.setProperty'");
@@ -127,7 +127,7 @@ public class WebDriverFactory {
 			// Create new driver
 			if (driver == null) {
 			//set path to Edge.exe
-			System.setProperty("webdriver.edge.driver", WebDriver_FolderDirectory + "MicrosoftWebDriver.exe");
+			System.setProperty("webdriver.edge.driver", WebDriver_FolderDirectory + "msedgedriver.exe");
 			driver = new EdgeDriver();
 			}
 			break;

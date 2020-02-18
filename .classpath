@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="Libs/xmlbeans-3.0.1.jar"/>
 	<classpathentry kind="lib" path="Libs/itext-2.1.7.jar"/>
 	<classpathentry kind="lib" path="Libs/extentreports-2.41.2.jar"/>
+	<classpathentry kind="lib" path="Libs/selenium-4.0.0-alpha-2-nodeps.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
